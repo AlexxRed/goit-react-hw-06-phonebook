@@ -1,16 +1,16 @@
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "redux/store";
+
 export const App = () => {
+  const dispatch = useDispatch();
+  const numberOfClick = useSelector(state => state.clicks.value);
+
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React redux phonebook
-    </div>
+    <>
+      <button onClick={() => dispatch(increment(5))}>
+        {numberOfClick}
+      </button>
+    </>
   );
 };
