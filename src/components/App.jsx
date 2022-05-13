@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "redux/store";
+import { increment, reset, getClicks } from "redux/clickSlice";
+
 
 export const App = () => {
   const dispatch = useDispatch();
-  const numberOfClick = useSelector(state => state.clicks.value);
+  const numberOfClick = useSelector(getClicks);
 
 
   return (
@@ -11,6 +12,7 @@ export const App = () => {
       <button onClick={() => dispatch(increment(5))}>
         {numberOfClick}
       </button>
+      <button onClick={()=> dispatch(reset())}>reset</button>
     </>
   );
 };
