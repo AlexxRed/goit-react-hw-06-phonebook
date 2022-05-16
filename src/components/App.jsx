@@ -62,16 +62,16 @@ function App() {
 
   const visibleContacts = getVisibleContacts();
   return (
-      <div>
+      <>
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={addContact} />
+          <ContactForm onSubmit={addContact} />
         <h2>Contacts</h2>
-        <Filter value={filter} onChange={changeFilter} />
-        <ContactList
-          contacts={visibleContacts}
-          onDeleteContact={deleteContact}
-        />
-      </div>
+          <Filter value={filter} onChange={changeFilter} />
+            <ContactList
+              contacts={visibleContacts}
+              onDeleteContact={deleteContact}
+            />
+      </>
     );
 }
 
