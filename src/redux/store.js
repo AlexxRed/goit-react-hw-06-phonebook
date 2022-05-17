@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {clickSlice} from './clickSlice'
+import { contactSlice } from './contactsSlice';
 
 export const store = configureStore({
     reducer: {
-        clicks: clickSlice.reducer,
+        contacts: contactSlice.reducer,
     }
 });

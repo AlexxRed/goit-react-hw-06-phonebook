@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const initialContacts = [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -12,7 +14,7 @@ const initialContacts = [
     ] 
 
 function App() {
-  const localContacts = getContacts()
+  const localContacts = getContacts();
 
   const [contacts, setContacts] = useState(() => {
     return localContacts ?? initialContacts

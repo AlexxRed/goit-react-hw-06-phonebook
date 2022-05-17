@@ -3,6 +3,7 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { MainForm, Label, InputForm, ButtonAdd } from './ContactForm.styled';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const initialValues = {
