@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 import {  useDispatch } from 'react-redux';
-import { addContact, removeContact,filterContacts } from '../redux/contactsSlice';
+import { addContact, removeContact, filterContacts } from '../redux/contactsSlice';
 
 
 const initialContacts = [
