@@ -9,7 +9,11 @@ import { createSlice } from '@reduxjs/toolkit';
 //         state.value += action.payload
 //     }
 // });
-const initialState = { value: 0 };
+// const initialState = { value: 0 };
+const initialState = {
+    items: [],
+    filter: ''
+};
 
 export const clickSlice = createSlice({
     name: 'clicks',
