@@ -15,6 +15,9 @@ const initialContacts = [
 
 function App() {
   const localContacts = getContacts();
+  const dispatch = useDispatch()
+
+
 
   const [contacts, setContacts] = useState(() => {
     return localContacts ?? initialContacts
