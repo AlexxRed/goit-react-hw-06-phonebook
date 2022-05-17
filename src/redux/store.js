@@ -1,19 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsSlice } from './contactsSlice';
 // import logger from 'redux-logger';
 import {
     persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
 } from 'redux-persist';
+import { contactsReducer } from './contactsSlice';
 
 export const store = configureStore({
     reducer: {
-        contacts: contactsSlice.reducer,
+        contacts: contactsReducer,
     },
     
     middleware(getDefaultMiddleware) {
