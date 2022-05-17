@@ -1,8 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactSlice } from './contactsSlice';
+import { contactsSlice } from './contactsSlice';
+import  logger  from 'redux-logger';
 
 export const store = configureStore({
     reducer: {
-        contacts: contactSlice.reducer,
-    }
+        contacts: contactsSlice.reducer,
+    },
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(),logger]
 });
+
+
+const s = store.getState()
+console.log(s);

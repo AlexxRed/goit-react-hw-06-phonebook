@@ -3,7 +3,8 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import { addContact, removeContact,filterContacts } from '../redux/contactsSlice';
 
 
 const initialContacts = [
@@ -32,8 +33,8 @@ function App() {
     return JSON.parse(localStorage.getItem('contacts'));
   };
 
-  const addContact = ({ name, number }) => {
-    const contact = {
+  const addOneContact = ({ name, number }) => {
+    const newContact = {
       id: nanoid(),
       name,
       number,
@@ -47,14 +48,17 @@ function App() {
       return alert(`${name} is already in contacts!`);
     };
 
-    setContacts([contact, ...contacts])
+    setContacts([newContact, ...contacts])
+    return dispatch(addContact(newContact))
   };
 
   const deleteContact = contactId => {
+    dispatch(removeContact(contactId))
     setContacts(contacts.filter(({id})=> id !== contactId));
   };
 
   const changeFilter = e => {
+    dispatch(filterContacts(e.currentTarget.value))
     setFilter(e.currentTarget.value );
   };
 
@@ -69,7 +73,7 @@ function App() {
   return (
       <>
         <h1>Phonebook</h1>
-          <ContactForm onSubmit={addContact} />
+          <ContactForm onSubmit={addOneContact} />
         <h2>Contacts</h2>
           <Filter value={filter} onChange={changeFilter} />
             <ContactList

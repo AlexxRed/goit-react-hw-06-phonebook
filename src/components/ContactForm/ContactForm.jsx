@@ -3,13 +3,11 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { MainForm, Label, InputForm, ButtonAdd } from './ContactForm.styled';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+// import { addContact } from '../../redux/contactsSlice';
 
 
-const initialValues = {
-  name: '',
-  number: '',
-};
+
 const schema = yup.object().shape({
   name: yup.string().required(),
   number: yup.number().min(8).positive().required(),
@@ -18,8 +16,15 @@ const schema = yup.object().shape({
 const renderError = message => <p>{message}</p>;
 
 function ContactForm({ onSubmit }) {
+  const initialValues = {
+    name: '',
+    number: '',
+  };
+  
   const handleSubmit = (values, { resetForm }) => {
+    // console.log(values);
     onSubmit(values);
+  
     resetForm();
   };
 
