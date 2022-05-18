@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 import {
     persistStore,
     FLUSH,
@@ -11,25 +11,49 @@ import {
 } from 'redux-persist';
 import { contactsReducer } from './contactsSlice';
 
+
 export const store = configureStore({
     reducer: {
         contacts: contactsReducer,
     },
-    
-    middleware(getDefaultMiddleware) {
-        return getDefaultMiddleware({
-            serializableCheck: {
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(
+        {
+        serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        });
-    },
-
-    
-    // middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(),logger]
+        },
+    }
+    ),logger]
 });
 
 export const persistor = persistStore(store);
 
-const s = store.getState()
-console.log(s);
+
+// middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(
+//         {
+//         serializableCheck: {
+//             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//         },
+//     }
+//     ),logger]
+
+
+// middleware(getDefaultMiddleware) {
+    //     return getDefaultMiddleware({
+    //         serializableCheck: {
+    //         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    //         },
+    //     });
+    // },
+
+    // const middleware = [
+//     ...getDefaultMiddleware({
+//         serializableCheck: {
+//             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//         },
+//     }),
+//     logger,
+// ];
+
+// const s = store.getState()
+// console.log(s);
 
