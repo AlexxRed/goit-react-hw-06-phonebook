@@ -22,7 +22,8 @@ const ContactList = () => {
   };
 
   return(
-  <ul>
+    <ul>
+    {visibleContacts.length === 0 && <h3>...oops has no contacts :(</h3>}
     {visibleContacts.map(({ id, name, number }) => (
       <ItemList key={id}>
         <p>
@@ -36,6 +37,5 @@ const ContactList = () => {
   </ul>
 );
 }
-
 
 export default ContactList;
