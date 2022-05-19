@@ -1,30 +1,29 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+import { schema } from '../../constants/validationSchema';
+import { nanoid } from 'nanoid';
+import { useDispatch} from 'react-redux';
+import { addContact} from '../../redux/contactsSlice';
 import { MainForm, Label, InputForm, ButtonAdd } from './ContactForm.styled';
-import PropTypes from 'prop-types';
-// import { useDispatch } from 'react-redux';
-// import { addContact } from '../../redux/contactsSlice';
 
-
-
-const schema = yup.object().shape({
-  name: yup.string().required(),
-  number: yup.number().min(8).positive().required(),
-});
 
 const renderError = message => <p>{message}</p>;
 
-function ContactForm({ onSubmit }) {
+function ContactForm() {
+  const dispatch = useDispatch();
+
   const initialValues = {
     name: '',
     number: '',
   };
   
-  const handleSubmit = (values, { resetForm }) => {
-    // console.log(values);
-    onSubmit(values);
-  
+  const handleSubmit = ({name, number}, { resetForm }) => {
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+    dispatch(addContact(newContact));
     resetForm();
   };
 
@@ -45,10 +44,6 @@ function ContactForm({ onSubmit }) {
       </MainForm>
     </Formik>
   );
-}
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
 }
 
 export default ContactForm
